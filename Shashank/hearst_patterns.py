@@ -1,20 +1,16 @@
-
 import re
 import warnings
 warnings.filterwarnings("ignore")
-
 import pandas as pd
 import numpy as np
 import networkx as nx
 import matplotlib
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
-
 from collections import defaultdict, Counter
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.cluster import AgglomerativeClustering
-
 
 #DATASET (25 sentences, Cricket)
 sentences = [
@@ -45,19 +41,14 @@ sentences = [
     "A wicket is a target consisting of three stumps and two bails.",
 ]
 
-
-print("  HPE ONTOLOGY PROJECT — Cricket Domain")
 print(" Taxonomy Building ")
-
 print("\n" + "─" * 70)
-print("SECTION 1 — DATASET (25 sentences)")
-
+print(" DATASET (25 sentences)")
 for i, s in enumerate(sentences, 1):
     print(f"  S{i:02d}: {s}")
 
 
 # PREPROCESSING
-
 def preprocess(text):
     """Lowercase, strip punctuation for term extraction."""
     text = text.lower().strip()
@@ -90,20 +81,13 @@ for s in sentences[:4]:
     print()
 
 
-
 # TAXONOMY BUILDING
-
-
 print("\n" + "═" * 70)
 print("  STEP 4 — TAXONOMY BUILDING")
-
-
-
 # METHOD - HEARST PATTERN-BASED
 
 print("\n" + "─" * 70)
 print("METHOD 1 — Hearst Pattern-Based Taxonomy")
-
 hearst_patterns = [
     # (child, parent) direction
     (r"([A-Za-z ]+) is a (?:type of |kind of |form of )?([A-Za-z ]+)", "is-a"),
